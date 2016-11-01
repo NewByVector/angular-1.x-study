@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Restrict</title>
+</head>
+<body ng-app="myApp">
+	<div hello>
+		<a href="www.baidu.com">www.baidu.com</a>
+	</div>
+
+</body>
+<script src="../../script/angular-1.3.0.js"></script>
+<script>
+	angular.module('myApp', []).run(function($templateCache) {
+		$templateCache.put('hello.html','<div>hello everyone</div>');
+	}).directive('hello', function(){
+		return {
+			restrict: 'A',
+			transclude: true,
+			template: '<div><span>hello everyone</span><div ng-transclude></div></div>'
+		};
+	});
+
+</script>
+</html>
