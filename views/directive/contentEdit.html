@@ -1,0 +1,39 @@
+<!doctype html>
+<html ng-app="MyModule">
+	<head>
+		<meta charset="utf-8">
+		<style>
+			div[contentEditable]{
+				background-color: #ccc;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<div contentEditable="true" ng-model=" " title="Click to Edit">Some</div>
+		<input type="text" ng-model="content">
+	</body>
+	<script src="../../script/angular-1.3.0.js"></script>
+	<script>
+		var myModule = angular.module("MyModule", []);
+		myModule.directive('contenteditable', function(){
+			// Runs during compile
+			return {
+				require: 'ngModel',
+				link: function($scope, iElm, iAttrs, controller) {
+					//view->model
+					iElm.on('keyup',function() {
+						$scope.$apply(function() {
+							controller.$setViewValue(iElm.text());
+						});
+					});
+					controller.$setViewValue(iElm.text());
+					//modle->view
+					controller.$render = function() {
+						iElm.html(controller.$viewValue);	
+					};
+				}
+			};
+		});
+	</script>
+</html>
