@@ -1,0 +1,55 @@
+html,body{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.home{
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    font-size: 40px;
+}
+.main{
+    width: 100%;
+    height: 100%;
+}
+.main .header{
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    font-size: 30px;
+    margin-top: 20px;
+    background-color: #ccc;
+    border: 1px solid #f00;
+}
+.main .left{
+    width: 200px;
+    height: 100%;
+    float: left;
+    border: 1px solid #0f0;
+    background-color: #eee;
+    list-style-type: none;
+}
+.main .left li{
+    width: 180px;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 10px;
+    background-color: #ccc;
+    text-align: center;
+    cursor: pointer;
+}
+.main .left li.on{
+    background-color: #f00;
+}
+.main .con{
+    float: left;
+    width: calc(100% - 250px);
+    height: calc(100% - 110px);
+}
+.main .page{
+    padding-top: 50px;
+    font-size: 40px;
+    text-align: center;
+}

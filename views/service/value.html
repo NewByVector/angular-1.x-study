@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>value</title>
+</head>
+<body ng-app="myApp">
+    <div ng-controller="myCtrl1"></div>
+    <div ng-controller="myCtrl2"></div>
+
+    <script src="../../script/angular.js"></script>
+    <script>
+        angular.module('myApp', [])
+        .constant('PREFIX', [
+            'CU_', // CONTROL_UNIT_PREFIX
+            'R_', // REGION_PREFIX
+            'CA_', // CAMERA_PREFIX
+            "IO_", // IO_PREFIX
+            "POS_", // POS_PREFIX
+            "AC_", // ACCESS_PREFIX
+            "EN_" // DEVICE_PREFIX
+        ])
+        .value('Exception', {
+            timeout: false,
+            forceLogout: false,
+            licenseError: 0
+        })
+        .config(['PREFIX', function (PREFIX) {
+            //constant可以在config里面注入，但是value不可以
+        }])
+        .controller('myCtrl1', ['$scope', 'PREFIX', function ($scope, PREFIX) {
+            console.log(PREFIX);
+        }])
+        .controller('myCtrl2', ['$scope', 'Exception', function ($scope, Exception) {
+            console.log(Exception);
+        }]);
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body ng-app="myApp">
+    <div ng-controller="myCtrl">
+        {{ text1 }} {{text2}}
+    </div>
+    <script src="../../script/angular-1.3.0.js"></script>
+    <script>
+        angular.module('myApp', [])
+        //config中只能注入用provider写的服务
+        .provider('myService', [function () {
+
+            var getLastName = function () {
+                return 'World';
+            };
+            this.$get = function () {
+                return {
+                    firstName: 'Hello',
+                    getLastName: getLastName
+                };
+            };
+        }])
+        .controller('myCtrl', ['$scope', 'myService', function ($scope, myService) {
+            $scope.text1 = myService.firstName;
+            $scope.text2 = myService.getLastName();
+        }]);
+    </script>
+</body>
+</html>
